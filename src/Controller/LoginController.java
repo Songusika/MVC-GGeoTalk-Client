@@ -65,20 +65,26 @@ public class LoginController extends Thread{
             oos.writeObject(user);
             oos.flush();
             boolean chk = true;
-            while(chk){
+            
+            Loop1 : while(socket!=null){
+                System.out.println("받는거 시작");
                 UserAccount recevied = (UserAccount)(ois.readObject());
-                if(recevied.getId() == user.getId() && recevied.getPw() == user.getPw() &&recevied.getType() == user.getType()){
+                System.out.println("다시 받음 암튼");
+                if(recevied.getId().equals(user.getId()) && recevied.getPw().equals(user.getPw()) && recevied.getType()==user.getType()){
                     switch(recevied.getChk(login)){
                         case 0:
-                            new LobbyController(user);  //로비화면 킴
+                            LobbyController lobby = new LobbyController(user);  //로비화면 킴
+                            System.out.println("응기잇 로그인 성공임");
                             loginView.dispose();
                             close();
+                            break;                            
                         case 1:  
                             JOptionPane.showMessageDialog(null, "로그인실패 아이디와 패스워드 확인하세요!");
                             loginView.idField.setText("");
                             loginView.PasswordField.setText("");
+                            break Loop1;
                     }
-                 chk = false;
+                
                 }
             }
         }catch(Exception e){
