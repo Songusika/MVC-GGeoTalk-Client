@@ -6,6 +6,7 @@
 package View;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -34,7 +35,7 @@ public class FindAccountView extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         idField = new javax.swing.JTextField();
         nameField = new javax.swing.JTextField();
-        chkPw = new javax.swing.JButton();
+        chkPwBtn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -70,13 +71,13 @@ public class FindAccountView extends javax.swing.JFrame {
             }
         });
 
-        chkPw.setBackground(new java.awt.Color(64, 68, 75));
-        chkPw.setFont(new java.awt.Font("휴먼엑스포", 0, 18)); // NOI18N
-        chkPw.setForeground(new java.awt.Color(255, 255, 255));
-        chkPw.setText("비밀번호");
-        chkPw.addActionListener(new java.awt.event.ActionListener() {
+        chkPwBtn.setBackground(new java.awt.Color(64, 68, 75));
+        chkPwBtn.setFont(new java.awt.Font("휴먼엑스포", 0, 18)); // NOI18N
+        chkPwBtn.setForeground(new java.awt.Color(255, 255, 255));
+        chkPwBtn.setText("비밀번호");
+        chkPwBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkPwActionPerformed(evt);
+                chkPwBtnActionPerformed(evt);
             }
         });
 
@@ -101,7 +102,7 @@ public class FindAccountView extends javax.swing.JFrame {
                         .addGap(35, 35, 35)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
-                            .addComponent(chkPw)
+                            .addComponent(chkPwBtn)
                             .addComponent(idField))))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -119,7 +120,7 @@ public class FindAccountView extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(idField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(74, 74, 74)
-                .addComponent(chkPw)
+                .addComponent(chkPwBtn)
                 .addContainerGap(87, Short.MAX_VALUE))
         );
 
@@ -145,8 +146,9 @@ public class FindAccountView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameFieldActionPerformed
 
-    private void chkPwActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPwActionPerformed
-         try{
+    private void chkPwBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPwBtnActionPerformed
+        /* 
+        try{
             var user = UserDao.getInstance().findPassword(idField.getText(), nameField.getText());
             if(user.isPresent()){
                JOptionPane.showMessageDialog(null, "비밀번호 : "+ new String(user.get().getPw()));
@@ -157,7 +159,9 @@ public class FindAccountView extends javax.swing.JFrame {
         }catch(Exception e){
             e.printStackTrace();
         }        // TODO add your handling code here:
-    }//GEN-LAST:event_chkPwActionPerformed
+    }//GEN-LAST:event_chkPwBtnActionPerformed
+*/
+    }
 
     /**
      * @param args the command line arguments
@@ -196,12 +200,20 @@ public class FindAccountView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton chkPw;
-    private javax.swing.JTextField idField;
+    public javax.swing.JButton chkPwBtn;
+    public javax.swing.JTextField idField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField nameField;
+    public javax.swing.JTextField nameField;
     // End of variables declaration//GEN-END:variables
+
+    public JTextField getIdField() {
+        return idField;
+    }
+
+    public JTextField getNameField() {
+        return nameField;
+    }
 }

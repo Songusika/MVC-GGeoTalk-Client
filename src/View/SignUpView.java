@@ -113,11 +113,6 @@ public class SignUpView extends javax.swing.JFrame {
         checkID.setFont(new java.awt.Font("휴먼엑스포", 0, 20)); // NOI18N
         checkID.setForeground(new java.awt.Color(255, 255, 255));
         checkID.setText("중복확인");
-        checkID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkIDActionPerformed(evt);
-            }
-        });
 
         goBack.setBackground(new java.awt.Color(64, 68, 75));
         goBack.setFont(new java.awt.Font("휴먼엑스포", 0, 20)); // NOI18N
@@ -217,35 +212,13 @@ public class SignUpView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/*/*
-    private void checkIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkIDActionPerformed
-       boolean chk;
-       boolean idNullChk = true;
-       chk = UserDao.getInstance().check(IdField.getText());
-       if(IdField.getText().equals("")){
-           JOptionPane.showMessageDialog(null, "공백문자는 사용할 수 없습니다!");
-           idchk = true;
-           idNullChk = true;
-       }else{
-           idNullChk = false;
-       }
-       if(chk == true && idNullChk==false){
-           JOptionPane.showMessageDialog(null, "이미 사용중인 아이디입니다.");
-           IdField.setText("");
-           idchk = false;
-           return;
-       }else if(idNullChk == false){
-           JOptionPane.showMessageDialog(null, "사용 가능한 아이디입니다.");
-           idchk = true;
-       }
-// TODO add your handling code here:
-    }//GEN-LAST:event_checkIDActionPerformed
-*/
+/*/**/
     private void goBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBackActionPerformed
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_goBackActionPerformed
 
     private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
+        /*
         int loginOk;
         
         if((new String(PwField.getPassword()).equals("") || IdField.getText().equals("") || nameField.getText().equals(""))){
@@ -271,6 +244,7 @@ public class SignUpView extends javax.swing.JFrame {
         }else if(pwchk==true && idchk == false && isNull==false){
             JOptionPane.showMessageDialog(null, "아이디 중복 확인을 해주세요!");
         }
+        */
     }//GEN-LAST:event_LoginBtnActionPerformed
 
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
