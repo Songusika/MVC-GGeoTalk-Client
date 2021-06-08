@@ -71,11 +71,6 @@ public class SignUpView extends javax.swing.JFrame {
         nameField.setFont(new java.awt.Font("휴먼엑스포", 0, 20)); // NOI18N
         nameField.setForeground(new java.awt.Color(255, 255, 255));
         nameField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        nameField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                nameFieldActionPerformed(evt);
-            }
-        });
 
         IdField.setBackground(new java.awt.Color(64, 68, 75));
         IdField.setFont(new java.awt.Font("휴먼엑스포", 0, 20)); // NOI18N
@@ -84,60 +79,25 @@ public class SignUpView extends javax.swing.JFrame {
         PwCheckField.setBackground(new java.awt.Color(64, 68, 75));
         PwCheckField.setFont(new java.awt.Font("휴먼엑스포", 0, 20)); // NOI18N
         PwCheckField.setForeground(new java.awt.Color(255, 255, 255));
-        PwCheckField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PwCheckFieldActionPerformed(evt);
-            }
-        });
-        PwCheckField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                PwCheckFieldKeyReleased(evt);
-            }
-        });
 
         PwField.setBackground(new java.awt.Color(64, 68, 75));
         PwField.setFont(new java.awt.Font("휴먼엑스포", 0, 20)); // NOI18N
         PwField.setForeground(new java.awt.Color(255, 255, 255));
-        PwField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                PwFieldActionPerformed(evt);
-            }
-        });
-        PwField.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                PwFieldKeyReleased(evt);
-            }
-        });
 
         checkID.setBackground(new java.awt.Color(64, 68, 75));
         checkID.setFont(new java.awt.Font("휴먼엑스포", 0, 20)); // NOI18N
         checkID.setForeground(new java.awt.Color(255, 255, 255));
         checkID.setText("중복확인");
-        checkID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                checkIDActionPerformed(evt);
-            }
-        });
 
         goBack.setBackground(new java.awt.Color(64, 68, 75));
         goBack.setFont(new java.awt.Font("휴먼엑스포", 0, 20)); // NOI18N
         goBack.setForeground(new java.awt.Color(255, 255, 255));
         goBack.setText("뒤로가기");
-        goBack.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                goBackActionPerformed(evt);
-            }
-        });
 
         LoginBtn.setBackground(new java.awt.Color(64, 68, 75));
         LoginBtn.setFont(new java.awt.Font("휴먼엑스포", 0, 20)); // NOI18N
         LoginBtn.setForeground(new java.awt.Color(255, 255, 255));
         LoginBtn.setText("회원가입");
-        LoginBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                LoginBtnActionPerformed(evt);
-            }
-        });
 
         checkPw.setFont(new java.awt.Font("휴먼엑스포", 0, 20)); // NOI18N
         checkPw.setForeground(new java.awt.Color(255, 255, 255));
@@ -217,82 +177,6 @@ public class SignUpView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-/*/*
-    private void checkIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkIDActionPerformed
-       boolean chk;
-       boolean idNullChk = true;
-       chk = UserDao.getInstance().check(IdField.getText());
-       if(IdField.getText().equals("")){
-           JOptionPane.showMessageDialog(null, "공백문자는 사용할 수 없습니다!");
-           idchk = true;
-           idNullChk = true;
-       }else{
-           idNullChk = false;
-       }
-       if(chk == true && idNullChk==false){
-           JOptionPane.showMessageDialog(null, "이미 사용중인 아이디입니다.");
-           IdField.setText("");
-           idchk = false;
-           return;
-       }else if(idNullChk == false){
-           JOptionPane.showMessageDialog(null, "사용 가능한 아이디입니다.");
-           idchk = true;
-       }
-// TODO add your handling code here:
-    }//GEN-LAST:event_checkIDActionPerformed
-*/
-    private void goBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_goBackActionPerformed
-        dispose();        // TODO add your handling code here:
-    }//GEN-LAST:event_goBackActionPerformed
-
-    private void LoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LoginBtnActionPerformed
-        int loginOk;
-        
-        if((new String(PwField.getPassword()).equals("") || IdField.getText().equals("") || nameField.getText().equals(""))){
-            JOptionPane.showMessageDialog(null, "공백문자는 사용할 수 없습니다!");
-            isNull=true;
-        }
-        
-        if(!new String(PwField.getPassword()).equals(new String(PwCheckField.getPassword()))){
-            checkPw.setText("비밀번호가 일치하지 않습니다!!");
-            pwchk = false;
-        }else if(new String(PwField.getPassword()).equals(new String(PwCheckField.getPassword()))){
-            pwchk = true;
-            checkPw.setText(" ");
-          
-        }  
-        if(pwchk==true && idchk == true && isNull==false){
-            loginOk = UserDao.getInstance().insert(IdField.getText(), new String(PwField.getPassword()), nameField.getText());
-            // TODO add your handling code here:
-            if(loginOk !=0 && idchk == true){
-                JOptionPane.showMessageDialog(null, "회원가입성공");
-                dispose();
-            }
-        }else if(pwchk==true && idchk == false && isNull==false){
-            JOptionPane.showMessageDialog(null, "아이디 중복 확인을 해주세요!");
-        }
-    }//GEN-LAST:event_LoginBtnActionPerformed
-
-    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
-          
-     // TODO add your handling code here:
-    }//GEN-LAST:event_nameFieldActionPerformed
-
-    private void PwFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PwFieldActionPerformed
-            // TODO add your handling code here:
-    }//GEN-LAST:event_PwFieldActionPerformed
-
-    private void PwCheckFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PwCheckFieldActionPerformed
-              // TODO add your handling code here:
-    }//GEN-LAST:event_PwCheckFieldActionPerformed
-
-    private void PwFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PwFieldKeyReleased
-        
-    }//GEN-LAST:event_PwFieldKeyReleased
-
-    private void PwCheckFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_PwCheckFieldKeyReleased
-
-    }//GEN-LAST:event_PwCheckFieldKeyReleased
 
     /**
      * @param args the command line arguments
@@ -337,18 +221,18 @@ public class SignUpView extends javax.swing.JFrame {
     boolean pwchk = true;
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField IdField;
+    public javax.swing.JTextField IdField;
     public javax.swing.JButton LoginBtn;
-    private javax.swing.JPasswordField PwCheckField;
-    private javax.swing.JPasswordField PwField;
+    public javax.swing.JPasswordField PwCheckField;
+    public javax.swing.JPasswordField PwField;
     public javax.swing.JButton checkID;
-    private javax.swing.JLabel checkPw;
+    public javax.swing.JLabel checkPw;
     public javax.swing.JButton goBack;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField nameField;
+    public javax.swing.JTextField nameField;
     // End of variables declaration//GEN-END:variables
 }

@@ -24,12 +24,11 @@ public class LoginController extends Thread{
     Socket socket;
     ObjectOutputStream oos;
     ObjectInputStream ois;
-    static int login = 0, mkId = 1, finPw = 2;
-    // 로그인 = 0, 회원가입 = 1, 계정 찾기 = 2
+    static int login = 0, fnacc = 1, signup =3;
+    // 로그인 = 0, 계정 찾기 = 1, 회원가입 = 3
     public LoginController() {
         serverInfo = ServerInfo.getInstance();
         loginView = new LoginViewGUI();
-        loginView.setVisible(true);
         
         user = new UserAccount();
         
@@ -38,6 +37,15 @@ public class LoginController extends Thread{
             public void actionPerformed(ActionEvent e) {
                  if(loginView.LoginBtn.equals(e.getSource())){
                      LoginBtnClick(e);
+      }
+            }
+        });
+        
+        loginView.signUpBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 if(loginView.signUpBtn.equals(e.getSource())){
+                     signUpBtnClick();
       }
             }
         });
@@ -93,7 +101,8 @@ public class LoginController extends Thread{
     }  
  
     public void signUpBtnClick(){
-        
+        SignUpController signup = new SignUpController(socket, ois, oos);
+        signup.start();
     }
     
     public void  findAccBtnClick(){
@@ -111,6 +120,7 @@ public class LoginController extends Thread{
     }
     
     public void run(){
+        loginView.setVisible(true);
         try{
             socket = new Socket(serverInfo.serverIp, serverInfo.loginPort);
             oos = new ObjectOutputStream(socket.getOutputStream());
