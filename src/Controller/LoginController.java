@@ -77,7 +77,7 @@ public class LoginController extends Thread{
                             System.out.println("응기잇 로그인 성공임");
                             loginView.dispose();
                             close();
-                            break;                            
+                            break Loop1;                            
                         case 1:  
                             JOptionPane.showMessageDialog(null, "로그인실패 아이디와 패스워드 확인하세요!");
                             loginView.idField.setText("");
