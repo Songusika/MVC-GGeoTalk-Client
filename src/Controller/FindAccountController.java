@@ -46,19 +46,14 @@ public class FindAccountController extends Thread {
 
     }
 
-    public void actionPerform(java.awt.event.ActionEvent evt) {
-        if (findAccountView.chkPwBtn.equals(evt.getSource())) {
-
-        }
-    }
 
     public void chkPwBtnClick(java.awt.event.ActionEvent evt) {
         user = new UserAccount(); //객체는 사용하려면 생성해야 한다 처음 생성한 객체를 또 붙잡고 수정이 잘 안된다.
-        System.out.println("클릭시 도는 함수 시작");
+        System.out.println("클릭시 도는 비번 찾기 함수 시작");
         String id = findAccountView.getIdField().getText();
         String name = findAccountView.getNameField().getText();
         if (!(id.equals("") || name.equals(""))) {
-            System.out.println("낫널 시작");
+            System.out.println("두 필드 차야 데이터 삽입 시작");
             user.setId(id);
             user.setName(name);
             user.setType(1); //계정찾기 타입 1
@@ -66,7 +61,7 @@ public class FindAccountController extends Thread {
             JOptionPane.showMessageDialog(null, "똑바로 입력하세요.");
             return;
         }
-        System.out.println("쓰는 함수 시작");
+        System.out.println("객체 전송 함수 시작");
 
         try {
             oos.writeObject(user);
@@ -74,15 +69,15 @@ public class FindAccountController extends Thread {
             boolean chk = true;
             Loop2:
             while (socket != null) {
-                System.out.println("보냈고받는거 시작함");
+                System.out.println("객체 보냈고 받는거 시작함");
 
                 UserAccount recevied = (UserAccount) (ois.readObject());
-                System.out.println("다시 받음 암튼");
+                System.out.println("객체 잘 돌려받았음");
                 if (recevied.getId().equals(user.getId())  && recevied.getType() == user.getType()) {
                     switch (recevied.getChk(finPw)) { //1 타입의 finPw의 값 0 ,1
                         case 0:
 
-                            System.out.println("실패0");
+                            JOptionPane.showMessageDialog(null, "그런 사람 없습니다. 다시 입력해보세요.");
                             break Loop2;
                         case 1:
                             JOptionPane.showMessageDialog(null, "당신의 비밀번호는"+recevied.getPw()+"입니다.");
