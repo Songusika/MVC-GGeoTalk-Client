@@ -69,23 +69,24 @@ public class SignUpController extends Thread {
     }
 
     public void checkID() {
-        System.out.println("아이이이잇 시이잉ㅅ 팛");
         if (signupView.IdField.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "빈칸은 사용할 수 없습니다.");
         } else {
+            user = new UserAccount();
             user.setType(2);
             user.setId(signupView.IdField.getText());
-            System.out.println("보내기 전");
-            System.out.println("is that true?");
+            System.out.println(user.getId());
             try {
-                System.out.println("트라이문 들어옴");
                 oos.writeObject(user);
                 oos.flush();
+                System.out.println("============================");
+                System.out.println("보낸 아이디"+user.getId());
+                System.out.println("해쉬 코드 : "+ System.identityHashCode(user));
                 boolean chk = true;
                 
                 while (socket != null) {
                     UserAccount recevied = (UserAccount) (ois.readObject());
-                    System.out.println(recevied.getChk(2));
+                    //System.out.println(recevied.getChk(2));
                     if (recevied.getChk(2) == 0) {
                         JOptionPane.showMessageDialog(null, "이미 있는 아이디입니다");
                         signupView.IdField.setText("");
@@ -102,7 +103,7 @@ public class SignUpController extends Thread {
             }
             
         }
-        System.out.println("엥");
+        System.out.println("===================================="); 
     }
 
     public void backLogin() {
@@ -113,6 +114,7 @@ public class SignUpController extends Thread {
         nullchk();
         if (isNull == false && pwChk == true && chkID == true) {
             //서버와 연결해서 보내야함.
+            user = new UserAccount();
             user.setId(signupView.IdField.getText());
             user.setPw(new String(signupView.PwField.getPassword()));
             user.setName(signupView.nameField.getText());
