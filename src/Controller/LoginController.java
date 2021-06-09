@@ -49,6 +49,15 @@ public class LoginController extends Thread{
       }
             }
         });
+        
+         loginView.findAccBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                 if(loginView.findAccBtn.equals(e.getSource())){
+                     findAccBtnClick();
+      }
+            }
+        });
   }
     
   
@@ -107,7 +116,8 @@ public class LoginController extends Thread{
     }
     
     public void  findAccBtnClick(){
-    
+        FindAccountController findAcc = new FindAccountController(socket, oos, ois);
+        findAcc.start();
     }
     
     public void close(){  //서버와의 연결을 종료...
