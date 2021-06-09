@@ -75,13 +75,14 @@ public class LoginController extends Thread{
         
     }
     public void LoginBtnClick(java.awt.event.ActionEvent evt) {             
-        user = new UserAccount();
         user.setId(loginView.idField.getText());
         user.setPw(new String(loginView.PasswordField.getPassword()));
         user.setType(0);
         try{
             oos.writeObject(user);
             oos.flush();
+            oos.reset();
+            
             boolean chk = true;
             
             Loop1 : while(socket!=null){

@@ -4,23 +4,29 @@
  * and open the template in the editor.
  */
 package Model;
+
 import java.io.Serializable;
 import java.util.ArrayList;
+
 /**
  *
  * @author Seok17
  */
-public class FriendList implements Serializable{
+public class FriendList implements Serializable {
+    
     private ArrayList<FriendInfo> friendlist;
+    
+    int len = 0;
+    
+    public ArrayList<FriendInfo> getFriendlist() {
+        return friendlist;
+    }
 
-	public ArrayList<FriendInfo> getFriendlist() {
-		return friendlist;
-	}
+    public void setFriendlist(ArrayList<FriendInfo> friendlist) {
+        this.friendlist = friendlist;
+    }
 
-	public void setFriendlist(ArrayList<FriendInfo> friendlist) {
-		this.friendlist = friendlist;
-	}
-	public void addFriendlist(FriendInfo friend) {
-		friendlist.add(friend);
-	}
+    public void addFriendlist(FriendInfo friend) {
+        friendlist.add(friend);
+    }
 }

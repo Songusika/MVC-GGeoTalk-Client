@@ -66,6 +66,7 @@ public class FindAccountController extends Thread {
         try {
             oos.writeObject(user);
             oos.flush();
+            oos.reset();
             boolean chk = true;
             Loop2:
             while (socket != null) {

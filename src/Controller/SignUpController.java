@@ -79,6 +79,7 @@ public class SignUpController extends Thread {
             try {
                 oos.writeObject(user);
                 oos.flush();
+                oos.reset();
                 System.out.println("============================");
                 System.out.println("보낸 아이디"+user.getId());
                 System.out.println("해쉬 코드 : "+ System.identityHashCode(user));
@@ -123,6 +124,7 @@ public class SignUpController extends Thread {
             try {
                 oos.writeObject(user);
                 oos.flush();
+                oos.reset();
                 JOptionPane.showMessageDialog(null, "회원가입 성공!");
                 signupView.dispose();
             } catch (Exception e) {
