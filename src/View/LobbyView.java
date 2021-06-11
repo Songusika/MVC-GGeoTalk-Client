@@ -35,13 +35,13 @@ public class LobbyView extends javax.swing.JFrame {
         showFriendBtn = new javax.swing.JButton();
         showRoomBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         refreshBtn = new javax.swing.JButton();
         plusBtn = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        JList = new javax.swing.JList<>();
+        Scroll = new javax.swing.JScrollPane();
+        Jlist = new javax.swing.JList<>();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
 
@@ -58,8 +58,6 @@ public class LobbyView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(32, 34, 37));
-        setMaximumSize(new java.awt.Dimension(500, 610));
-        setPreferredSize(new java.awt.Dimension(450, 610));
         setResizable(false);
 
         jPanel4.setBackground(new java.awt.Color(47, 49, 54));
@@ -76,10 +74,10 @@ public class LobbyView extends javax.swing.JFrame {
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Seok17\\Desktop\\icons\\제목을 입력해주세요.-001 (4).png")); // NOI18N
 
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("휴먼엑스포", 1, 20)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel8.setText("nick");
+        nameLabel.setBackground(new java.awt.Color(255, 255, 255));
+        nameLabel.setFont(new java.awt.Font("휴먼엑스포", 1, 20)); // NOI18N
+        nameLabel.setForeground(new java.awt.Color(255, 255, 0));
+        nameLabel.setText("nick");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -88,7 +86,7 @@ public class LobbyView extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel1)
                         .addGroup(jPanel5Layout.createSequentialGroup()
@@ -104,7 +102,7 @@ public class LobbyView extends javax.swing.JFrame {
                 .addGap(26, 26, 26)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jLabel8)
+                .addComponent(nameLabel)
                 .addGap(47, 47, 47)
                 .addComponent(showFriendBtn)
                 .addGap(71, 71, 71)
@@ -148,10 +146,10 @@ public class LobbyView extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        JList.setBackground(new java.awt.Color(64, 68, 75));
-        JList.setFont(new java.awt.Font("휴먼엑스포", 0, 14)); // NOI18N
-        JList.setSelectionBackground(new java.awt.Color(57, 60, 65));
-        jScrollPane1.setViewportView(JList);
+        Jlist.setBackground(new java.awt.Color(64, 68, 75));
+        Jlist.setFont(new java.awt.Font("휴먼엑스포", 0, 14)); // NOI18N
+        Jlist.setSelectionBackground(new java.awt.Color(57, 60, 65));
+        Scroll.setViewportView(Jlist);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -163,7 +161,7 @@ public class LobbyView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
+                        .addComponent(Scroll, javax.swing.GroupLayout.DEFAULT_SIZE, 281, Short.MAX_VALUE)
                         .addContainerGap())
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -173,7 +171,7 @@ public class LobbyView extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1)
+                .addComponent(Scroll)
                 .addContainerGap())
         );
 
@@ -227,15 +225,15 @@ public class LobbyView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public javax.swing.JList<String> JList;
+    public javax.swing.JList<String> Jlist;
+    public javax.swing.JScrollPane Scroll;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JScrollPane jScrollPane1;
+    public javax.swing.JLabel nameLabel;
     public javax.swing.JButton plusBtn;
     public javax.swing.JButton refreshBtn;
     public javax.swing.JButton showFriendBtn;

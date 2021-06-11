@@ -95,7 +95,7 @@ public class LoginController extends Thread{
                             
                             System.out.println("응기잇 로그인 성공임");
                             loginView.dispose();
-                            LobbyController lobby = new LobbyController(user);  //로비화면 킴
+                            LobbyController lobby = new LobbyController(recevied);  //로비화면 킴
                             lobby.start();
                             close();
                             break Loop1;                            
