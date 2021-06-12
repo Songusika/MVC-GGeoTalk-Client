@@ -37,7 +37,7 @@ public class LobbyView extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         nameLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
+        mode = new javax.swing.JLabel();
         refreshBtn = new javax.swing.JButton();
         plusBtn = new javax.swing.JButton();
         Scroll = new javax.swing.JScrollPane();
@@ -68,8 +68,16 @@ public class LobbyView extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createEmptyBorder(0, 0, 0, 0));
         jPanel5.setForeground(new java.awt.Color(255, 204, 153));
 
+        showFriendBtn.setBackground(new java.awt.Color(64, 68, 75));
+        showFriendBtn.setFont(new java.awt.Font("휴먼엑스포", 1, 18)); // NOI18N
+        showFriendBtn.setForeground(new java.awt.Color(255, 255, 0));
         showFriendBtn.setText("친구목록");
+        showFriendBtn.setMaximumSize(new java.awt.Dimension(93, 33));
+        showFriendBtn.setMinimumSize(new java.awt.Dimension(93, 33));
 
+        showRoomBtn.setBackground(new java.awt.Color(64, 68, 75));
+        showRoomBtn.setFont(new java.awt.Font("휴먼엑스포", 1, 18)); // NOI18N
+        showRoomBtn.setForeground(new java.awt.Color(255, 255, 0));
         showRoomBtn.setText("방 목록");
 
         jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Seok17\\Desktop\\icons\\제목을 입력해주세요.-001 (4).png")); // NOI18N
@@ -87,14 +95,10 @@ public class LobbyView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(nameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1)
-                        .addGroup(jPanel5Layout.createSequentialGroup()
-                            .addGap(9, 9, 9)
-                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(showFriendBtn)
-                                .addComponent(showRoomBtn)))))
+                    .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(showFriendBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(showRoomBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -103,22 +107,28 @@ public class LobbyView extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(nameLabel)
-                .addGap(47, 47, 47)
-                .addComponent(showFriendBtn)
-                .addGap(71, 71, 71)
-                .addComponent(showRoomBtn)
-                .addContainerGap(425, Short.MAX_VALUE))
+                .addGap(28, 28, 28)
+                .addComponent(showFriendBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(38, 38, 38)
+                .addComponent(showRoomBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(423, Short.MAX_VALUE))
         );
 
         jPanel2.setBackground(new java.awt.Color(47, 49, 54));
 
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setFont(new java.awt.Font("휴먼엑스포", 1, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("친구");
+        mode.setBackground(new java.awt.Color(255, 255, 255));
+        mode.setFont(new java.awt.Font("휴먼엑스포", 1, 24)); // NOI18N
+        mode.setForeground(new java.awt.Color(255, 255, 255));
+        mode.setText("친구");
 
+        refreshBtn.setBackground(new java.awt.Color(64, 68, 75));
+        refreshBtn.setFont(new java.awt.Font("휴먼엑스포", 0, 18)); // NOI18N
+        refreshBtn.setForeground(new java.awt.Color(255, 255, 255));
         refreshBtn.setText("R");
 
+        plusBtn.setBackground(new java.awt.Color(64, 68, 75));
+        plusBtn.setFont(new java.awt.Font("휴먼엑스포", 0, 18)); // NOI18N
+        plusBtn.setForeground(new java.awt.Color(255, 255, 255));
         plusBtn.setText("+");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -127,7 +137,7 @@ public class LobbyView extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel6)
+                .addComponent(mode)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(plusBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -142,7 +152,7 @@ public class LobbyView extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(refreshBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(plusBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(mode, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
 
@@ -228,11 +238,11 @@ public class LobbyView extends javax.swing.JFrame {
     public javax.swing.JList<String> Jlist;
     public javax.swing.JScrollPane Scroll;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    public javax.swing.JLabel mode;
     public javax.swing.JLabel nameLabel;
     public javax.swing.JButton plusBtn;
     public javax.swing.JButton refreshBtn;

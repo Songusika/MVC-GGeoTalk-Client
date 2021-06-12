@@ -16,7 +16,9 @@ public class FriendList implements Serializable{
         private ArrayList<FriendInfo> friendlist;
         private int len = 0;
         
-        public FriendList(){}
+        public FriendList(){
+            friendlist = new ArrayList<FriendInfo>();
+        }
         
         public FriendList(UserAccount user){
             this.user = user;
