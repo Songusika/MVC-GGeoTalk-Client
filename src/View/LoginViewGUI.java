@@ -43,6 +43,7 @@ public class LoginViewGUI extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GGeTalk");
+        setLocation(new java.awt.Point(0, 0));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(54, 57, 63));
@@ -87,8 +88,9 @@ public class LoginViewGUI extends javax.swing.JFrame {
         jLabel2.setText("Version = 1 . 0 .6-alpha ");
 
         PasswordField.setBackground(new java.awt.Color(64, 68, 75));
-        PasswordField.setFont(new java.awt.Font("휴먼엑스포", 0, 20)); // NOI18N
+        PasswordField.setFont(new java.awt.Font("Yu Gothic", 0, 20)); // NOI18N
         PasswordField.setForeground(new java.awt.Color(255, 255, 255));
+        PasswordField.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         idField.setBackground(new java.awt.Color(64, 68, 75));
         idField.setFont(new java.awt.Font("휴먼엑스포", 0, 20)); // NOI18N
@@ -251,6 +253,7 @@ public class LoginViewGUI extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+         
               new LoginViewGUI().setVisible(true);
             }
         });

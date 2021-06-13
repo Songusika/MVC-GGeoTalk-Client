@@ -4,7 +4,9 @@
  * and open the template in the editor.
  */
 package View;
-
+import Model.*;
+import Controller.*;
+import Controller.ChatController;
 import javax.swing.JOptionPane;
 
 /**
@@ -80,7 +82,7 @@ public class LobbyView extends javax.swing.JFrame {
         showRoomBtn.setForeground(new java.awt.Color(255, 255, 0));
         showRoomBtn.setText("방 목록");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Seok17\\Desktop\\icons\\제목을 입력해주세요.-001 (4).png")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/title.png"))); // NOI18N
 
         nameLabel.setBackground(new java.awt.Color(255, 255, 255));
         nameLabel.setFont(new java.awt.Font("휴먼엑스포", 1, 20)); // NOI18N
@@ -159,6 +161,11 @@ public class LobbyView extends javax.swing.JFrame {
         Jlist.setBackground(new java.awt.Color(64, 68, 75));
         Jlist.setFont(new java.awt.Font("휴먼엑스포", 0, 14)); // NOI18N
         Jlist.setSelectionBackground(new java.awt.Color(57, 60, 65));
+        Jlist.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JlistMouseClicked(evt);
+            }
+        });
         Scroll.setViewportView(Jlist);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -198,6 +205,10 @@ public class LobbyView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JlistMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JlistMouseClicked
+     
+    }//GEN-LAST:event_JlistMouseClicked
 
     /**
      * @param args the command line arguments

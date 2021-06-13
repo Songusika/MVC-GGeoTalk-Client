@@ -32,8 +32,6 @@ public class FindAccountController extends Thread {
         this.oos = oos;
         this.ois = ois;
         findAccountView = new FindAccountView();
-        
-        
 
         findAccountView.chkPwBtn.addActionListener(new ActionListener() {
             @Override
@@ -58,7 +56,7 @@ public class FindAccountController extends Thread {
             user.setName(name);
             user.setType(1); //계정찾기 타입 1
         } else {
-            JOptionPane.showMessageDialog(null, "똑바로 입력하세요.");
+            JOptionPane.showMessageDialog(null, "공백은 사용할 수 없습니다.");
             return;
         }
         System.out.println("객체 전송 함수 시작");
@@ -79,7 +77,7 @@ public class FindAccountController extends Thread {
                     switch (recevied.getChk(fnacc)) { //1 타입의 finPw의 값 0 ,1
                         case 0:
 
-                            JOptionPane.showMessageDialog(null, "그런 사람 없습니다. 다시 입력해보세요.");
+                            JOptionPane.showMessageDialog(null, "유저를 찾을 수 없습니다! 다시 입력해보세요.");
                             break Loop2;
                         case 1:
                             JOptionPane.showMessageDialog(null, "당신의 비밀번호는"+recevied.getPw()+"입니다.");
@@ -96,6 +94,7 @@ public class FindAccountController extends Thread {
 
     public void run() {
         try {
+            findAccountView.setLocation(1165,300);
             findAccountView.setVisible(true);
         } catch (Exception e) {
             System.out.println("err");

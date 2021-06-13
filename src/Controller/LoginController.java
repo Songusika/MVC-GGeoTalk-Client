@@ -135,6 +135,7 @@ public class LoginController extends Thread {
     }
 
     public void run() {
+        loginView.setLocationRelativeTo(null);
         loginView.setVisible(true);
         try {
             socket = new Socket(serverInfo.serverIp, serverInfo.loginPort);

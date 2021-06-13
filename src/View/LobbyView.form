@@ -194,7 +194,7 @@
             <Component class="javax.swing.JLabel" name="jLabel1">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="2" name="C:\Users\Seok17\Desktop\icons\&#xc81c;&#xbaa9;&#xc744; &#xc785;&#xb825;&#xd574;&#xc8fc;&#xc138;&#xc694;.-001 (4).png"/>
+                  <Image iconType="3" name="/icons/title.png"/>
                 </Property>
               </Properties>
             </Component>
@@ -330,6 +330,9 @@
                   <Color blue="41" green="3c" red="39" type="rgb"/>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="JlistMouseClicked"/>
+              </Events>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
                 <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>

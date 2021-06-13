@@ -77,11 +77,16 @@ public class SignUpView extends javax.swing.JFrame {
         IdField.setForeground(new java.awt.Color(255, 255, 255));
 
         PwCheckField.setBackground(new java.awt.Color(64, 68, 75));
-        PwCheckField.setFont(new java.awt.Font("휴먼엑스포", 0, 20)); // NOI18N
+        PwCheckField.setFont(new java.awt.Font("Yu Gothic", 1, 20)); // NOI18N
         PwCheckField.setForeground(new java.awt.Color(255, 255, 255));
+        PwCheckField.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                PwCheckFieldMouseClicked(evt);
+            }
+        });
 
         PwField.setBackground(new java.awt.Color(64, 68, 75));
-        PwField.setFont(new java.awt.Font("휴먼엑스포", 0, 20)); // NOI18N
+        PwField.setFont(new java.awt.Font("Yu Gothic", 0, 20)); // NOI18N
         PwField.setForeground(new java.awt.Color(255, 255, 255));
 
         checkID.setBackground(new java.awt.Color(64, 68, 75));
@@ -177,6 +182,10 @@ public class SignUpView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void PwCheckFieldMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_PwCheckFieldMouseClicked
+            checkPw.setText("");// TODO add your handling code here:
+    }//GEN-LAST:event_PwCheckFieldMouseClicked
 
     /**
      * @param args the command line arguments

@@ -22,6 +22,11 @@ import java.awt.event.MouseEvent;
 import javax.swing.JList;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
+import javax.swing.event.AncestorListener;
+
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 /**
  *
@@ -42,6 +47,9 @@ public class LobbyController extends Thread {
     ObjectInputStream ois;
 
     LobbyView lobby;
+
+    ChatController chat;
+
     int now = 0; //0 이면 친구창, 1이면 방리스트창  
     static int GETROOM = 1, GETFRIEND = 0;
 
@@ -79,6 +87,7 @@ public class LobbyController extends Thread {
                 }
             }
         });
+
         lobby.showRoomBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -87,15 +96,26 @@ public class LobbyController extends Thread {
                 }
             }
         });
+        lobby.Jlist.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                makeChat(evt);
+            }
+        });
 
     }
 
-    public void mouseClicked(MouseEvent evt) {
+    public void makeChat(MouseEvent evt){
         JList list = (JList) evt.getSource();
-        if (evt.getClickCount() == 2) {
-            new ChattingRoomView();
+        if (evt.getClickCount() == 2 && now == 0) {
+            roominfo = roomlist.getRoom(list.getSelectedIndex());
+            roominfo.setroomId(list.getSelectedIndex());
+            System.out.println(list.getSelectedIndex() + "방 선택됨!");
+            ChatController chat = new ChatController(roominfo, user);
+            chat.start();
         }
     }
+    
+
 
     public void RoomBtnClicked() { //JList 업데이트 해야함. --> 방목록으로 
         now = 0;
@@ -142,13 +162,13 @@ public class LobbyController extends Thread {
         switch (now) {
             case 0:
                 for (int i = 0; i < len; i++) {
-                    names.addElement(" " + (i+1) + " 번방   " + renames[i]);
+                    names.addElement(" " + (i + 1) + " 번방   " + renames[i]);
                 }
                 return names;
             case 1:
                 for (int i = 0; i < len; i++) {
                     System.out.println(renames[i]);
-                    names.addElement(renames[i]);
+                    names.addElement(" " + renames[i]);
                 }
                 return names;
         }
@@ -163,6 +183,11 @@ public class LobbyController extends Thread {
         lobby.Jlist.setSelectionBackground(new java.awt.Color(57, 60, 65));
         lobby.Jlist.setFixedCellHeight(30);
         lobby.Jlist.setFixedCellWidth(30);
+        lobby.Jlist.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                makeChat(evt);
+            }
+        });
         lobby.Scroll.setViewportView(lobby.Jlist);
     }
 
@@ -172,7 +197,6 @@ public class LobbyController extends Thread {
             lobbymodel.setType(1);
             System.out.println("{서버에게 방 목록 요청!!}");
             oos.writeObject(lobbymodel);
-
             oos.flush();
             oos.reset();
 
@@ -271,14 +295,15 @@ public class LobbyController extends Thread {
     }
 
     public int addRoom() {
-        LOOP1: while (socket != null) {
+        LOOP1:
+        while (socket != null) {
             try {
                 String r_name = JOptionPane.showInputDialog("생성하고 싶은 방이름을 적어주세요");
-                if (r_name == null){
+                if (r_name == null) {
                     System.out.println("Cancel is pressed");
                     return 0;
                 }
-                if(r_name.equals("")){
+                if (r_name.equals("")) {
                     JOptionPane.showMessageDialog(null, "공백문자는 입력할 수 없습니다!");
                     continue LOOP1;
                 }
@@ -327,6 +352,7 @@ public class LobbyController extends Thread {
             ois = new ObjectInputStream(socket.getInputStream());
 
             FriendBtnClicked();
+            lobby.setLocationRelativeTo(null);
             lobby.setVisible(true);
             //    friendlist = getFriendlist();
             //    roomlist = getRoomlist();

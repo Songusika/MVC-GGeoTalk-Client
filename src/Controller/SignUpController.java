@@ -30,7 +30,8 @@ public class SignUpController extends Thread {
     boolean chkID = false; //false면, id 체크 안됨 true면 id 체크 후, 문제 없음
     boolean pwChk = false; //false면 비번 체크 안됨. 
     boolean isNull = true; //true면 null 있음,
-
+    
+    
     public SignUpController(Socket socket, ObjectInputStream ois, ObjectOutputStream oos) {
         this.socket = socket;
         this.oos = oos;
@@ -159,6 +160,7 @@ public class SignUpController extends Thread {
     }
 
     public void run() {
+        signupView.setLocation(310, 200);
         signupView.setVisible(true);
     }
 
