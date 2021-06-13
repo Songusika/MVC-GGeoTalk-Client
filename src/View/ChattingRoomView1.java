@@ -21,7 +21,7 @@ public class ChattingRoomView1 extends javax.swing.JFrame {
     String msg = "test1";
     String time = "test1";
     int type = 0; //1 이면 나의 메시지, 0이면 상대방 메시지
-    
+
     String roomName;
     private StyledDocument doc; // 정렬를 위한 필드
     private SimpleAttributeSet left, right; // 정렬을 위한 필드
@@ -144,11 +144,6 @@ public class ChattingRoomView1 extends javax.swing.JFrame {
         sendImg.setForeground(new java.awt.Color(255, 255, 255));
         sendImg.setText("IMAGE");
         sendImg.setBorder(null);
-        sendImg.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sendImgActionPerformed(evt);
-            }
-        });
 
         sendMsg.setBackground(new java.awt.Color(64, 68, 75));
         sendMsg.setFont(new java.awt.Font("휴먼엑스포", 0, 18)); // NOI18N
@@ -206,17 +201,6 @@ public class ChattingRoomView1 extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void sendImgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendImgActionPerformed
-        String msg = JOptionPane.showInputDialog("kk");
-        ChatMsgView("송우석", msg, "LL", 0);
-        System.out.println("실행됨!!");
-
-        jScrollPane1.setViewportView(ChattingArea);
-        JScrollBar scr = jScrollPane1.getVerticalScrollBar();
-        if (stack_height > 448)
-            scr.setValue(stack_height);
-    }//GEN-LAST:event_sendImgActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -253,7 +237,6 @@ public class ChattingRoomView1 extends javax.swing.JFrame {
         });
     }
 
-    
     public void ChatMsgView(String name, String msg, String time, int type) {
         this.type = this.type;
         BASE = new JPanel(); //기본 블록
@@ -354,14 +337,23 @@ public class ChattingRoomView1 extends javax.swing.JFrame {
         ChattingArea.add(BASE);
         ChattingArea.setSize(448, ChattingArea.getHeight() + BASE.getHeight()); // 중간 부분의 사이즈 재 설정
     }
-    
-     public void ChatImgView(String name, String msg, String time, int type) {
+
+    public void ChatImgView(String name, String msg, String time, int type) {
+        System.out.println("사진출력이 실행됨!");
         this.type = this.type;
         BASE = new JPanel(); //기본 블록
         center = new JPanel(); //중간 --> 이름이랑, 시간, 메시지 들어가야함
         blankspace = new JPanel(); //좌우측 여백
         nameLabel = new JLabel(name); //이름 써지는 곳
         timeLabel = new JLabel(time);
+
+        JPanel emojipanel = new JPanel() {
+            public void paintComponent(Graphics g) {
+                Dimension d = new Dimension(120, 160);
+                g.drawImage(new ImageIcon(".\\src\\icons\\profile.png").getImage(), 0, 0, d.width, d.height,
+                        null);
+            }
+        }; // 이모티콘이 들어가는 부분
 
         profile = new JPanel() {
             public void paintComponent(Graphics g) {
@@ -371,25 +363,17 @@ public class ChattingRoomView1 extends javax.swing.JFrame {
             }
         }; // 프사 
 
-        left = new SimpleAttributeSet();
-        StyleConstants.setAlignment(left, StyleConstants.ALIGN_LEFT); // 왼쪽 텍스트 정렬
-        right = new SimpleAttributeSet();
-        StyleConstants.setAlignment(right, StyleConstants.ALIGN_RIGHT); // 오른쪽 텍스트 정렬
-
-        msgArea = new JTextPane();
-
-        doc = msgArea.getStyledDocument();
-
         BASE.setLayout(new BorderLayout());
         center.setLayout(new BorderLayout());
+        profile.setLayout(new BorderLayout());
 
         profile.setBackground(invisible);
         blankspace.setBackground(invisible);
         center.setBackground(invisible);
 
+        emojipanel.setPreferredSize(new Dimension(120, 160));
         profile.setPreferredSize(new Dimension(45, 60));
         blankspace.setPreferredSize(new Dimension(200 - msg.length() * 2, 60));
-        System.out.println(200 - msg.length());
 
         nameLabel.setFont(new Font("휴먼엑스포", 0, 14));
         nameLabel.setForeground(new Color(255, 255, 255));
@@ -397,51 +381,31 @@ public class ChattingRoomView1 extends javax.swing.JFrame {
         timeLabel.setFont(new Font("휴먼엑스포", 0, 12));
         timeLabel.setForeground(new Color(255, 255, 255));
 
-        msgArea.setBackground(new Color(47, 49, 54));
-        msgArea.setPreferredSize(new Dimension(50, 30));
-        msgArea.setEnabled(false);
-
         BASE.setBackground(invisible);
-        BASE.setPreferredSize(new Dimension(420, 60));
+        BASE.setPreferredSize(new Dimension(420, 170));
 
         switch (type) {
             case 0: {
-                try {
-                    // 왼쪽 정렬
-                    doc.insertString(doc.getLength(), msg, left);
-                    StyleConstants.setLeftIndent(left, 0);
-                    doc.setParagraphAttributes(doc.getLength(), 1, left, false);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                nameLabel.setHorizontalAlignment(JLabel.LEFT);
-                timeLabel.setHorizontalAlignment(JLabel.LEFT);
+
                 BASE.add(profile, BorderLayout.WEST);
                 BASE.add(blankspace, BorderLayout.EAST);
+                nameLabel.setHorizontalAlignment(JLabel.LEFT);
+                timeLabel.setHorizontalAlignment(JLabel.LEFT);
                 break;
+
             }
             case 1: {
-                try {
-                    // 오른쪽 정렬
-                    doc.insertString(doc.getLength(), msg, right);
-                    StyleConstants.setRightIndent(right, 0);
-                    doc.setParagraphAttributes(doc.getLength(), 1, right, false);
-                } catch (Exception e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-                nameLabel.setHorizontalAlignment(JLabel.RIGHT); // 오른쪽에 이름 라벨 정렬
-                timeLabel.setHorizontalAlignment(JLabel.RIGHT);
+
                 BASE.add(profile, BorderLayout.EAST); //
                 BASE.add(blankspace, BorderLayout.WEST);
-
+                nameLabel.setHorizontalAlignment(JLabel.RIGHT); // 오른쪽에 이름 라벨 정렬
+                timeLabel.setHorizontalAlignment(JLabel.RIGHT);
                 break;
             }
         }
-
+        center.add(emojipanel, BorderLayout.CENTER);
         center.add(nameLabel, BorderLayout.NORTH);
-        center.add(msgArea, BorderLayout.CENTER);
+       
         center.add(timeLabel, BorderLayout.SOUTH);
         BASE.add(center, BorderLayout.CENTER);
 

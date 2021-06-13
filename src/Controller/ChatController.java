@@ -9,6 +9,7 @@ import Model.RoomInfo;
 import Model.UserAccount;
 import Model.MessageInfo;
 
+import View.FileChooser;
 import View.ChattingRoomView1;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,6 +18,10 @@ import java.text.SimpleDateFormat;
 import java.io.*;
 import java.net.*;
 import javax.swing.JScrollBar;
+import java.io.File;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -45,103 +50,17 @@ public class ChatController extends Thread {
         try {
             socket = new Socket(server.serverIp, server.chatPort);
 
-            //   oos = new ObjectOutputStream(socket.getOutputStream());
-            // ois = new ObjectInputStream(socket.getInputStream());
         } catch (Exception e) {
             e.printStackTrace();
         }
-        /*
-        chat.sendMsg.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                sendMsg();
-            }
-        });
-         */
+
     }
 
-    /*
-    public void sendMsg() {
-        msg = new MessageInfo();
-        msg.setMessage(chat.typingArea.getText());
-        msg.setType(0);
-        msg.setName(user.getName());
-        msg.setTime(date.format(d));
-
-        try {
-            oos.writeObject(msg);
-            oos.flush();
-            oos.reset();
-            System.out.println("메시지를 잘 보냈습니다.");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void sendImg() {
-        msg = new MessageInfo();
-        msg.setMessage(chat.typingArea.getText());
-        msg.setType(1);
-        msg.setId(room.getroomId());
-        msg.setName(user.getName());
-        msg.setTime(date.format(d));
-
-        try {
-            oos.writeObject(msg);
-            oos.flush();
-            oos.reset();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void repaint() {
-        chat.jScrollPane1.setViewportView(chat.ChattingArea);
-        JScrollBar scr = chat.jScrollPane1.getVerticalScrollBar();
-        if (chat.stack_height > 448) {
-            scr.setValue(chat.stack_height);
-        }
-    }
-
-    public void showMsg(MessageInfo msg, int type) {
-        int me = type;
-        switch (msg.getType()) {
-            case 1:
-                chat.ChatMsgView(msg.getName(), msg.getMessage(), msg.getTime(), me);
-                repaint();
-                break;
-            case 0:
-                chat.ChatMsgView(msg.getName(), msg.getMessage(), msg.getTime(), me);
-                repaint();
-                break;
-        }
-    }
-     */
     public void run() {
         try {
             chat.setLocationRelativeTo(null);
             chat.setVisible(true);
-            /*
-            while (socket != null) {
-                msg = new MessageInfo();
-                msg = (MessageInfo) ois.readObject();
-                System.out.println("메시지를 받았습니다 !");
-                if (msg.getId() == room.getroomId()) {
-                    switch (msg.getType()) {
-                        case 0:   //문자열
-                            if (msg.getName().equals(user.getName())) {
-                                showMsg(msg, 0);
 
-                            } else {
-                                showMsg(msg, 1);
-                            }
-                            break;
-                        case 1: //사진 
-                            break;
-
-                    }
-                }
-            }*/
             Thread Sender = new Thread(new ClientSender(socket, chat, room, user));
             Thread Receiver = new Thread(new ClientReceiver(socket, chat, room, user));
 
@@ -160,6 +79,7 @@ public class ChatController extends Thread {
         UserAccount user;
         MessageInfo msg;
         ChattingRoomView1 chat;
+        File file;
 
         Socket socket;
         ObjectOutputStream oos;
@@ -179,6 +99,14 @@ public class ChatController extends Thread {
                 @Override
                 public void actionPerformed(ActionEvent e) {
                     sendMsg();
+                }
+            });
+
+            chat.sendImg.addActionListener(new ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    file = FileChooser.showFile();
+                    sendImg(file);
                 }
             });
 
@@ -217,7 +145,7 @@ public class ChatController extends Thread {
             }
         }
 
-        public void sendImg() {
+        public void sendImg(File file) {
             msg = new MessageInfo();
             msg.setMessage(chat.typingArea.getText());
             msg.setType(1);
@@ -236,6 +164,10 @@ public class ChatController extends Thread {
         }
 
     }
+    
+    public void changeToByte(File file){
+        
+    }
 
     class ClientReceiver extends Thread {
 
@@ -243,6 +175,7 @@ public class ChatController extends Thread {
         UserAccount user;
         MessageInfo msg;
         ChattingRoomView1 chat;
+        File file;
 
         Socket socket;
         ObjectInputStream ois;
@@ -283,6 +216,20 @@ public class ChatController extends Thread {
             }
         }
 
+        public void showImg(MessageInfo msg, int type) {
+            int me = type;
+            switch (msg.getType()) {
+                case 1:
+                    chat.ChatImgView(msg.getName(), msg.getMessage(), msg.getTime(), me);
+                    repaint();
+                    break;
+                case 0:
+                    chat.ChatImgView(msg.getName(), msg.getMessage(), msg.getTime(), me);
+                    repaint();
+                    break;
+            }
+        }
+
         public void run() {
             System.out.println("야 실행 됬냐?");
             try {
@@ -304,6 +251,12 @@ public class ChatController extends Thread {
                                 }
                                 break;
                             case 1: //사진 
+                                if (msg.getName().equals(user.getName())) {
+                                    showImg(msg, 1);
+
+                                } else {
+                                    showImg(msg, 0);
+                                }
                                 break;
 
                         }
