@@ -8,7 +8,7 @@ package Controller;
 import Model.RoomInfo;
 import Model.UserAccount;
 import Model.MessageInfo;
-import View.ImgPreView;
+
 
 import View.FileChooser;
 import View.ChattingRoomView1;
