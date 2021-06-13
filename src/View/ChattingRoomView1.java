@@ -338,7 +338,7 @@ public class ChattingRoomView1 extends javax.swing.JFrame {
         ChattingArea.setSize(448, ChattingArea.getHeight() + BASE.getHeight()); // 중간 부분의 사이즈 재 설정
     }
 
-    public void ChatImgView(String name, String msg, String time, int type) {
+    public void ChatImgView(String name, String time, int type, Image img) {
         System.out.println("사진출력이 실행됨!");
         this.type = this.type;
         BASE = new JPanel(); //기본 블록
@@ -350,7 +350,7 @@ public class ChattingRoomView1 extends javax.swing.JFrame {
         JPanel emojipanel = new JPanel() {
             public void paintComponent(Graphics g) {
                 Dimension d = new Dimension(120, 160);
-                g.drawImage(new ImageIcon(".\\src\\icons\\profile.png").getImage(), 0, 0, d.width, d.height,
+                g.drawImage(new ImageIcon(img).getImage(), 0, 0, d.width, d.height,
                         null);
             }
         }; // 이모티콘이 들어가는 부분
@@ -373,7 +373,7 @@ public class ChattingRoomView1 extends javax.swing.JFrame {
 
         emojipanel.setPreferredSize(new Dimension(120, 160));
         profile.setPreferredSize(new Dimension(45, 60));
-        blankspace.setPreferredSize(new Dimension(200 - msg.length() * 2, 60));
+        blankspace.setPreferredSize(new Dimension(195, 60));
 
         nameLabel.setFont(new Font("휴먼엑스포", 0, 14));
         nameLabel.setForeground(new Color(255, 255, 255));

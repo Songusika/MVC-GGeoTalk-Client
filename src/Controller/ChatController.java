@@ -8,13 +8,15 @@ package Controller;
 import Model.RoomInfo;
 import Model.UserAccount;
 import Model.MessageInfo;
-import View.imgpreview;
+import View.ImgPreView;
 
 import View.FileChooser;
 import View.ChattingRoomView1;
+import java.awt.Image;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.io.*;
@@ -26,6 +28,10 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.nio.file.Path;
 import java.nio.file.Files;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
 /**
@@ -38,7 +44,7 @@ public class ChatController extends Thread {
     UserAccount user;
     MessageInfo msg;
     ChattingRoomView1 chat;
-
+    BufferedImage img;
     public static SimpleDateFormat date = new SimpleDateFormat("kk시 mm분");
 
     Socket socket;
@@ -109,8 +115,32 @@ public class ChatController extends Thread {
 
             chat.sendImg.addActionListener(new ActionListener() {
                 @Override
-                public void actionPerformed(ActionEvent e) {
+                synchronized public void actionPerformed(ActionEvent e) {
+                    file = FileChooser.showFile();
+                    ImageIcon icon = new ImageIcon(file.getPath());
+                     JOptionPane.showMessageDialog(
+                        null,
+                        "Hello world",
+                        "Hello", JOptionPane.INFORMATION_MESSAGE,
+                        icon);
+                    System.out.println(".actionPerformed()");
 
+                    
+                    Path path = file.toPath();
+                    System.out.println("path.actionPerformed()");
+                    byte[] bytes = null;
+                    System.out.println("byte.actionPerformed()");
+                    try {
+                        bytes = Files.readAllBytes(path);
+                        System.out.println("file.actionPerformed()");
+                    } catch (IOException ex) {
+                        Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                    
+                    
+                    System.out.println("msg.actionPerformed()");
+                    sendImg(bytes);
                 }
             });
 
@@ -127,11 +157,6 @@ public class ChatController extends Thread {
         public void run() {
 
         }
-
-
-        
-
-        
 
         public void sendMsg() {
             msg = new MessageInfo();
@@ -174,8 +199,6 @@ public class ChatController extends Thread {
 
     }
 
-
-
     class ClientReceiver extends Thread {
 
         RoomInfo room;
@@ -213,9 +236,11 @@ public class ChatController extends Thread {
             int me = type;
             switch (msg.getType()) {
                 case 1:
+
                     chat.ChatMsgView(msg.getName(), msg.getMessage(), msg.getTime(), me);
                     repaint();
                     break;
+
                 case 0:
                     chat.ChatMsgView(msg.getName(), msg.getMessage(), msg.getTime(), me);
                     repaint();
@@ -225,13 +250,24 @@ public class ChatController extends Thread {
 
         public void showImg(MessageInfo msg, int type) {
             int me = type;
+            ByteArrayInputStream inputStream = new ByteArrayInputStream(msg.getFile());
+            {
+                try {
+                    img = ImageIO.read(inputStream);
+                } catch (IOException ex) {
+                    Logger.getLogger(ChatController.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             switch (msg.getType()) {
-                case 1:
-                    chat.ChatImgView(msg.getName(), msg.getMessage(), msg.getTime(), me);
-                    repaint();
-                    break;
+                case 1: {
+
+                    chat.ChatImgView(msg.getName(), msg.getTime(), me, img);
+                }
+                repaint();
+                break;
+
                 case 0:
-                    chat.ChatImgView(msg.getName(), msg.getMessage(), msg.getTime(), me);
+                    chat.ChatImgView(msg.getName(), msg.getTime(), me, img);
                     repaint();
                     break;
             }
@@ -276,4 +312,3 @@ public class ChatController extends Thread {
         }
     }
 }
-
