@@ -8,9 +8,11 @@ package Controller;
 import Model.RoomInfo;
 import Model.UserAccount;
 import Model.MessageInfo;
+import View.imgpreview;
 
 import View.FileChooser;
 import View.ChattingRoomView1;
+
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Date;
@@ -22,6 +24,9 @@ import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.nio.file.Path;
+import java.nio.file.Files;
+import javax.swing.JFrame;
 
 /**
  *
@@ -105,8 +110,7 @@ public class ChatController extends Thread {
             chat.sendImg.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
-                    file = FileChooser.showFile();
-                    sendImg(file);
+
                 }
             });
 
@@ -123,6 +127,11 @@ public class ChatController extends Thread {
         public void run() {
 
         }
+
+
+        
+
+        
 
         public void sendMsg() {
             msg = new MessageInfo();
@@ -145,9 +154,9 @@ public class ChatController extends Thread {
             }
         }
 
-        public void sendImg(File file) {
+        public void sendImg(byte[] file) {
             msg = new MessageInfo();
-            msg.setMessage(chat.typingArea.getText());
+            msg.setFile(file);
             msg.setType(1);
             msg.setId(room.getroomId());
             msg.setName(user.getName());
@@ -164,10 +173,8 @@ public class ChatController extends Thread {
         }
 
     }
-    
-    public void changeToByte(File file){
-        
-    }
+
+
 
     class ClientReceiver extends Thread {
 
@@ -269,3 +276,4 @@ public class ChatController extends Thread {
         }
     }
 }
+
