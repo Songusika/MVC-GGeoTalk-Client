@@ -120,8 +120,8 @@ public class ChatController extends Thread {
                     ImageIcon icon = new ImageIcon(file.getPath());
                      JOptionPane.showMessageDialog(
                         null,
-                        "Hello world",
-                        "Hello", JOptionPane.INFORMATION_MESSAGE,
+                        "이대로 전송합니다.",
+                        "전송 이미지 미리보기", JOptionPane.INFORMATION_MESSAGE,
                         icon);
                     System.out.println(".actionPerformed()");
 
